@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@plugin 'daisyui' {
+  themes: light --default, dark --prefersdark;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.table,
+.input,
+.select,
+.textarea,
+.btn,
+.menu,
+.alert {
+  max-width: 100%;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .navbar .btn {
+    min-height: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
