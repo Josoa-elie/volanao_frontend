@@ -12,6 +12,7 @@ dist/
 dist-ssr/
 build/
 *.local
+.vite/
 
 # Editor directories and files
 .vscode/*
@@ -23,7 +24,7 @@ build/
 *.njsproj
 *.sln
 *.sw?
-
+.log
 # OS
 .DS_Store
 Thumbs.db
