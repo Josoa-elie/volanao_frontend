@@ -72,7 +72,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="mt-5 max-w-xl text-lg text-base-content/70">
-              Expense Tracker vous aide à organiser vos achats, suivre vos catégories et garder un œil sur
+              Volanao vous aide à organiser vos achats, suivre vos catégories et garder un œil sur
               vos budgets, afin d’atteindre vos objectifs financiers plus facilement.
             </p>
 
