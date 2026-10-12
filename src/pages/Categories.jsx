@@ -19,7 +19,6 @@ import {
   Smartphone,
   Tag,
   Trash2,
-  Trash2Icon,
   Utensils,
   Wallet,
 } from 'lucide-react';

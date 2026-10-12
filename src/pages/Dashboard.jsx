@@ -157,7 +157,7 @@ export default function Dashboard() {
         <div className="alert alert-warning">
           <AlertTriangle className="h-5 w-5" aria-hidden="true" />
           <span>Aucun budget défini pour ce mois.</span>
-          <Link to="/budgets" className="btn btn-sm btn-warning">
+          <Link to="/dashboard/budgets" className="btn btn-sm btn-warning">
             Définir un budget
           </Link>
         </div>
@@ -302,11 +302,11 @@ export default function Dashboard() {
 
       {/* Actions rapides */}
       <div className="flex gap-3 flex-wrap">
-        <Link to="/expenses" className="btn btn-primary gap-2">
+        <Link to="/dashboard/expenses" className="btn btn-primary gap-2">
           <Plus className="h-4 w-4" aria-hidden="true" />
           Ajouter une dépense
         </Link>
-        <Link to="/categories" className="btn btn-outline gap-2">
+        <Link to="/dashboard/categories" className="btn btn-outline gap-2">
           <Tag className="h-4 w-4" aria-hidden="true" />
           Gérer les catégories
         </Link>
