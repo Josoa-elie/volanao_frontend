@@ -16,6 +16,30 @@ body {
   overflow-x: hidden;
 }
 
+.card {
+  overflow: visible;
+}
+
+.dropdown-content.menu {
+  left: auto;
+  right: 0;
+  z-index: 50;
+  width: 11rem !important;
+  min-width: 11rem;
+  flex-wrap: nowrap;
+}
+
+.dropdown-content.menu li,
+.dropdown-content.menu li > * {
+  width: 100%;
+}
+
+.dropdown-content.menu button {
+  width: 100%;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+
 #root {
   min-height: 100vh;
 }

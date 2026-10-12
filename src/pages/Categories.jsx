@@ -217,18 +217,18 @@ export default function Categories() {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map((cat) => (
-            <div key={cat.id} className="card bg-base-100 shadow-xl">
+            <div key={cat.id} className="card bg-base-100 shadow-xl overflow-visible">
               <div className="card-body">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-3 min-w-0 flex-1">
                     <div
-                      className="w-12 h-12 rounded-full flex items-center justify-center text-2xl"
+                      className="w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0"
                       style={{ backgroundColor: `${cat.color}30`, border: `2px solid ${cat.color}` }}
                     >
                       <CategoryIcon name={cat.icon} className="h-6 w-6" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-lg">{cat.name}</h3>
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-lg truncate">{cat.name}</h3>
                       {cat.monthly_limit && (
                         <p className="text-sm text-base-content/70">
                           Limite : {formatCurrency(cat.monthly_limit)}
@@ -236,13 +236,13 @@ export default function Categories() {
                       )}
                     </div>
                   </div>
-                  <div className="dropdown dropdown-end">
+                  <div className="dropdown dropdown-end relative">
                     <div tabIndex={0} role="button" className="btn btn-sm btn-ghost">
                       <MoreVertical className="h-4 w-4" aria-hidden="true" />
                     </div>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content menu bg-base-100 rounded-box shadow-lg w-40 p-2"
+                      className="dropdown-content menu bg-base-100 rounded-box shadow-lg w-44 sm:w-48 p-2 right-0 z-50"
                     >
                       <li>
                         <button onClick={() => openEdit(cat)}>

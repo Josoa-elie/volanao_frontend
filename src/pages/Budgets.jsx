@@ -140,24 +140,24 @@ export default function Budgets() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {budgets.map((budget) => (
-            <div key={budget.id} className="card bg-base-100 shadow-xl">
+            <div key={budget.id} className="card bg-base-100 shadow-xl overflow-visible">
               <div className="card-body">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-lg font-semibold capitalize">
+                <div className="flex justify-between items-start gap-2">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-lg font-semibold capitalize truncate">
                       {formatMonth(budget.month)}
                     </h3>
                     <p className="text-3xl font-bold text-primary mt-2">
                       {formatCurrency(budget.amount)}
                     </p>
                   </div>
-                  <div className="dropdown dropdown-end">
+                  <div className="dropdown dropdown-end relative">
                     <div tabIndex={0} role="button" className="btn btn-sm btn-ghost">
                       <MoreVertical className="h-4 w-4" aria-hidden="true" />
                     </div>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content menu bg-base-100 rounded-box shadow-lg w-40 p-2"
+                      className="dropdown-content menu bg-base-100 rounded-box shadow-lg w-44 sm:w-48 p-2 right-0 z-50"
                     >
                       <li>
                         <button onClick={() => openEdit(budget)}>
