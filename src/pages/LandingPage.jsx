@@ -35,6 +35,29 @@ const steps = [
   'Suivez vos dépenses et ajustez vos objectifs.',
 ];
 
+const schemaTables = [
+  {
+    name: 'users',
+    fields: ['id (PK)', 'username', 'email', 'password'],
+    description: 'Le compte utilisateur principal.',
+  },
+  {
+    name: 'categories',
+    fields: ['id (PK)', 'name', 'icon', 'color', 'monthly_limit', 'user_id (FK)'],
+    description: 'Chaque catégorie appartient à un utilisateur.',
+  },
+  {
+    name: 'budgets',
+    fields: ['id (PK)', 'amount', 'month', 'user_id (FK)'],
+    description: 'Le budget mensuel défini par utilisateur.',
+  },
+  {
+    name: 'expenses',
+    fields: ['id (PK)', 'amount', 'description', 'date', 'user_id (FK)', 'category_id (FK)'],
+    description: 'Une dépense est liée à un utilisateur et à une catégorie.',
+  },
+];
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-base-200 text-base-content">
@@ -149,6 +172,84 @@ export default function LandingPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="mt-16">
+          <div className="mb-8 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Structure de la base de données</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Modélisation en SGBDR</h2>
+          </div>
+
+          <div className="mb-8 rounded-3xl bg-base-100 p-5 shadow-lg ring-1 ring-base-300 sm:p-6">
+            <p className="text-base text-base-content/80">
+              Dans un SGBDR, chaque table représente une entité métier. Les clés primaires <strong>PK</strong> identifient les lignes,
+              tandis que les clés étrangères <strong>FK</strong> relient les tables entre elles. Ici, un utilisateur possède plusieurs
+              catégories, plusieurs budgets et plusieurs dépenses.
+            </p>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-4">
+            {schemaTables.map((table) => (
+              <div key={table.name} className="card bg-base-100 shadow-lg ring-1 ring-base-300">
+                <div className="card-body p-4">
+                  <h3 className="card-title text-lg font-bold text-primary">{table.name}</h3>
+                  <p className="text-sm text-base-content/70">{table.description}</p>
+                  <ul className="mt-3 space-y-1 text-sm text-base-content/80">
+                    {table.fields.map((field) => (
+                      <li key={field} className="flex items-start gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary"></span>
+                        <span>{field}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="m-16 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">Structure de la base de données</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Relations entre les tables</h2>
+          </div>
+
+          <div className="rounded-3xl bg-base-100 p-5 shadow-lg ring-1 ring-base-300 sm:p-6">
+            <p className="mb-4 text-base text-base-content/80">
+              La table <strong>users</strong> est au centre du schéma. Un utilisateur peut créer plusieurs catégories,
+              plusieurs budgets mensuels et plusieurs dépenses. On dit alors qu’il existe une relation de type <strong>un à plusieurs</strong>.
+            </p>
+
+            <p className="mb-4 text-base text-base-content/80">
+              La table <strong>categories</strong> est liée à <strong>users</strong> grâce à la clé étrangère <strong>user_id</strong>.
+              Cela signifie qu’une catégorie appartient à un seul utilisateur, mais qu’un utilisateur peut avoir plusieurs catégories.
+              De la même manière, chaque budget est associé à un utilisateur pour un mois donné.
+            </p>
+
+            <p className="mb-4 text-base text-base-content/80">
+              La table <strong>expenses</strong> est la plus importante pour les opérations courantes. Une dépense appartient à un
+              utilisateur et à une catégorie précise. C’est pour cette raison qu’elle contient deux clés étrangères : <strong>user_id</strong>
+              et <strong>category_id</strong>. Grâce à ces relations, on sait exactement à quel utilisateur appartient la dépense et dans
+              quelle catégorie elle a été classée.
+            </p>
+
+            <p className="text-base text-base-content/80">
+              En résumé, le système est relationnel : un utilisateur possède plusieurs catégories et plusieurs dépenses, chaque dépense
+              est classée dans une catégorie, et chaque budget est lié à un mois précis pour ce même utilisateur. Cette logique permet de
+              regrouper les données proprement et de faire des calculs fiables comme le total dépensé par mois ou par catégorie.
+            </p>
+          </div>
+          <div className="mt-8 rounded-3xl bg-base-100 p-5 shadow-lg ring-1 ring-base-300 sm:p-6">
+            
+            <div className="mt-6 rounded-2xl bg-base-200 p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-base-content/60">Exemple logique</p>
+              <pre className="mt-3 overflow-x-auto whitespace-pre-wrap text-sm text-base-content">
+                {`SELECT *
+                FROM expenses e
+                JOIN categories c ON c.id = e.category_id
+                JOIN users u ON u.id = e.user_id
+                WHERE u.id = 1;`}
+              </pre>
+            </div>
           </div>
         </section>
 
